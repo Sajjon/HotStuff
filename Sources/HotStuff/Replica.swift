@@ -6,17 +6,25 @@
 //
 
 import Foundation
+import Combine
+
+public final class Mempool {
+    
+    private var incommingClientCommandQueue: [ClientCommand]
+}
 
 public struct Replica {
     private let privateKey: PrivateKey
     
-    /// The highest `QC` this replica has voted `commit` for.
-    private var lockedQC: QuorumCertificate?
+//    /// The highest `QC` this replica has voted `commit` for.
+//    private var lockedQC: QuorumCertificate?
+//
+//    /// The highest `QC` this replica has voted `pre-commit` for
+//    private var prepareQC: QuorumCertificate?
     
-    /// The highest `QC` this replica has voted `pre-commit` for
-    private var prepareQC: QuorumCertificate?
+    private var view: View
     
-    internal var currentViewNumber: ViewNumber
+    private var incommingMessageSubject: PassthroughSubject<SignedMessage>
 
     public var isLeader: Bool
 }

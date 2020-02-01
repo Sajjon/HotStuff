@@ -29,6 +29,30 @@ public enum BasicHotStuff {
 //    fatalError()
 //}
 
+public struct View {
+    public let number: ViewNumber
+    public let command: ClientCommand
+    
+    // should this be here?
+    public let leader: Replica
+    
+    // should this exist?
+    public let phase: Phase
+    
+    enum Phase {
+        case prepare
+        case preCommit(prepareQC: QuorumCertificate)
+        case commit(preCommitQC: QuorumCertificate)
+        case decide(commitQC: QuorumCertificate)
+    }
+}
+
+extension Replica {
+    func basicHotStuffMainLoop() {
+        
+    }
+}
+
 // MARK: Main loop
 public extension BasicHotStuff {
     static func doConsensus(
